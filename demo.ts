@@ -36,7 +36,7 @@ async function test_async () {
 async function test_async_all () {
   i = 0
   await using allocator = new Arena(128)
-  await Promise.all(new Array(128).fill(0).map(() => dotheasyncthing(allocator)))
+  await Promise.all([...allocator.bytes].map(() => dotheasyncthing(allocator)))
   console.log(allocator.bytes)
 }
 
