@@ -1,6 +1,8 @@
-import { calloc, free, wrap_memory, unwrap_memory } from './compat.js'
+const { compat } = await import('./compat.js')
 
-class Arena implements Disposable, AsyncDisposable {
+const { calloc, free, wrap_memory, unwrap_memory } = compat
+
+export class Arena implements Disposable, AsyncDisposable {
   #size: number = 0;
   #addr: number = 0;
   #bytes: Uint8Array;
@@ -8,6 +10,7 @@ class Arena implements Disposable, AsyncDisposable {
   constructor (size: number) {
     this.#size = 0;
     this.#addr = calloc(1, size);
+    //@ts-ignore
     this.#bytes = wrap_memory(this.#addr, size);
   }
 
@@ -33,5 +36,3 @@ class Arena implements Disposable, AsyncDisposable {
     console.log(`async.dispose`);
   }
 }
-
-export { Arena }

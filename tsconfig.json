@@ -1,11 +1,12 @@
 {
-  "include": ["./*.ts"],
+  "include": ["./index.ts", "./demo.ts", "./compat.lo.ts", "./compat.bun.ts"],
+  "exclude": ["*.js", "node_modules"],
   "compilerOptions": {
     "outDir": "dist",
     "module": "nodenext",
     "target": "es2024",
     "lib": ["esnext"],
-    "types": ["node"],
+    "types": ["node", "lo-types", "bun"],
     "moduleResolution": "nodenext",
     "sourceMap": true,
     "declaration": true,
@@ -13,11 +14,12 @@
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
     "strict": true,
-    "jsx": "react-jsx",
+    "allowJs": false,
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "typeRoots": ["./node_modules/@beardsoft", "./node_modules/@types"]
   }
 }
